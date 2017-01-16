@@ -1,0 +1,8 @@
+---
+applications:
+- name: uestc-score-query
+  memory: 128MB
+  disk_quota: 512MB
+  random-route: true
+  buildpack: python_buildpack
+  command: python server.py
