@@ -1,4 +1,4 @@
-from flask import Flask,request,json,Response,jsonify
+from flask import Flask,request,json,Response,jsonify,redirect
 import uestc_query,os
 
 app = Flask(__name__)
@@ -6,11 +6,20 @@ app = Flask(__name__)
 # Get port from environment variable or choose 9099 as local default
 port = int(os.getenv("PORT", 9099))
 
+@app.before_request
+def before_request():
+    if request.url.startswith('http://'):
+        url = request.url.replace('http://', 'https://', 1)
+        code = 301
+        return redirect(url, code=code)
+
 @app.route('/')
 def home():
     username = request.args.get('username');
     password = request.args.get('password');
-    score_list = uestc_query.query(username,password);
+    score_list = []
+    if username and password : 
+        score_list = uestc_query.query(username,password);
     resp = Response(response=json.dumps(score_list,ensure_ascii=False,indent=2),
                     status=200,
                     mimetype="application/json")
