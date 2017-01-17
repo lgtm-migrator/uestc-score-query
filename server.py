@@ -6,6 +6,12 @@ app = Flask(__name__)
 # Get port from environment variable or choose 9099 as local default
 port = int(os.getenv("PORT", 9099))
 
+# force https
+@app.before_request
+def before_request():
+    if request.headers.get('x_forwarded_proto') != "https":
+        return redirect(request.url.replace('http://', 'https://', 1), code=301)
+
 @app.route('/')
 def home():
     username = request.args.get('username');
