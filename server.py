@@ -17,7 +17,7 @@ def home():
     username = request.args.get('username');
     password = request.args.get('password');
     score_list = []
-    if username and password : 
+    if username != None and password != None: 
         score_list = uestc_query.query(username,password);
     resp = Response(response=json.dumps(score_list,ensure_ascii=False,indent=2),
                     status=200,
