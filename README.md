@@ -22,7 +22,7 @@ cf push
 
 make sure your appname in file ```manifest``` is modified to yourself
 
-## docker image
+## deploy to docker
 
 Run command as followed:
 
