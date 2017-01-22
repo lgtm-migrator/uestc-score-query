@@ -1,0 +1,11 @@
+language: python
+deploy:
+  provider: cloudfoundry
+  api: https://api.run.pivotal.io
+  username: mrls@live.cn
+  password:
+    secure: SE2OAqD0xM55/VAZ8A5xkEoZsDE0zNQCVO/JdXtOpKyHO5vy/7qUVoPxc7btDll+4ZB6wTljm+9LPsqGV2XJ4loG8D1RigoMcM4Lsdjvj6bZ7fMII5LDlB1pvnvu9rjz53F3lORW8H8cUR8NGJCjZ7/4ZDA4K/IBfNbI2B3QRUE2wJx/kn0oDl8IyMX42lNNMkis3M/qYPF9brNgBNQhJneuQfkw9qEpby5vaj3jFvdWR6zFGF7zKtsLrfZlArO2gG0UuZHVcucuIAy4hSvG8N7nYCcfOSR9h7jqWpYitJeSOV+AdTYb+Z9AFP1hNi7KLWJhj8HJnc0QcqB7o7KOYHncu7jVCRgHOHyqTx0hFslaqwA/Hfz4DIh2bxxn3F5SJpyd5NBaLF2DlS/eVQPzc3xn1FHUoW9SAivKWP+D40ZsvOBj4WtF3i0FX9Sjm/vdAiOY0+CkHXGDzeHLgyjyxotV4yMDOrW4NLqvUXtS7mwBd3vwCSrUcTY81Ea33JygFTIVkX6HPfatq7l7GgBq27fQ88A5VcLrz+32gyUxbZ7maYtk7QNXaP0XtlMcxqEGsFkxBpAVNHzXEKsBGEtksjuG5+iW6xReeRwutHZg/Cdwq0UTG5gGJzJphS5vcKorUFktuDdanksHDbLvSx2C+vRivIlwNTv2zsclE86WKmw=
+  organization: mrls-org
+  space: development
+  on:
+    repo: Soontao/uestc-score-query

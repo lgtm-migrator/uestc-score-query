@@ -9,7 +9,7 @@ port = int(os.getenv("PORT", 9099))
 # force https
 @app.before_request
 def before_request():
-    if request.headers.get('x_forwarded_proto') != "https":
+    if os.getenv('ISCF') != None and request.headers.get('x_forwarded_proto') == "http":
         return redirect(request.url.replace('http://', 'https://', 1), code=301)
 
 @app.route('/')
