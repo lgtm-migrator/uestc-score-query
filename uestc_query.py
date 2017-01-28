@@ -7,6 +7,12 @@ from bs4 import BeautifulSoup
 
 class Session(object):
 
+    ALL_GRADES_URL = "http://eams.uestc.edu.cn/eams/teach/grade/course/person!historyCourseGrade.action?projectType=MAJOR"
+
+    AUTH_SERVER_URL = "https://idas.uestc.edu.cn/authserver/login"
+
+    AUTH_SERVER_INDEX = "https://idas.uestc.edu.cn/authserver/index.do"
+
     def __init__(self):
         self.conn = requests.session()
 
@@ -30,10 +36,10 @@ class Session(object):
         }
         r = session.post(
             "https://idas.uestc.edu.cn/authserver/login?service=http://portal.uestc.edu.cn/index.portal", data=data)
-        return self.is_login()
+        return self.is_login(username)
 
     def is_login(self, username: str=None):
-        r = self.conn.get("https://idas.uestc.edu.cn/authserver/index.do")
+        r = self.conn.get(self.AUTH_SERVER_INDEX)
         soup = BeautifulSoup(r.text, 'lxml')
         try:
             login_id = soup.select(
@@ -45,6 +51,27 @@ class Session(object):
         except Exception as err:
             raise err
             return False
+
+    def get_all_grades(self):
+        page = self.conn.get(self.ALL_GRADES_URL).text
+        return self.parse_all_grades_page(page)
+
+    def parse_all_grades_page(self, page: str):
+        soup = BeautifulSoup(page, "lxml")
+        grades_list = soup.select('.grid > table > tbody > tr')
+        heads = list(map(lambda td: td.text.strip(), soup.select(
+            '.grid > table > thead > tr > th')))
+        table = []
+        for i in heads:
+            print(i)
+        for grade in grades_list:
+            line = {}
+            tds = grade.find_all('td')
+            for i in range(0, len(tds)):
+                line[heads[i]] = tds[i].text.strip()
+            table.append(line)
+        return table
+
 
 def query(username, password):
     session = requests.session()

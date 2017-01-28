@@ -1,5 +1,7 @@
 # uestc-score-query
 
+[![Build Status](https://travis-ci.org/Soontao/uestc-score-query.svg?branch=master)](https://travis-ci.org/Soontao/uestc-score-query)
+
 ## Usage
 
 just use GET method and put username and password in the query param
