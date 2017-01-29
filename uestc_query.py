@@ -49,7 +49,6 @@ class Session(object):
             elif login_id:
                 return True
         except Exception as err:
-            raise err
             return False
 
     def get_all_grades(self):
@@ -62,8 +61,6 @@ class Session(object):
         heads = list(map(lambda td: td.text.strip(), soup.select(
             '.grid > table > thead > tr > th')))
         table = []
-        for i in heads:
-            print(i)
         for grade in grades_list:
             line = {}
             tds = grade.find_all('td')

@@ -6,10 +6,16 @@
 
 just use GET method and put username and password in the query param
 
-like this:
+login first:
 
+```curl
+curl https://uestc-score-query.cfapps.io/login?username=<yourusername>&password=<yourpassword>
 ```
-curl https://uestc-score-query.cfapps.io?username=<yourusername>&password=<yourpassword>
+
+and grades
+
+```curl
+curl https://uestc-score-query.cfapps.io/grades
 ```
 
 you can choose to deploy by cf or docker
