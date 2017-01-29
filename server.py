@@ -21,6 +21,10 @@ def before_request():
         session["is_login"] = False
         query_sessions[session["sid"]] = uestc_query.Session()
 
+@app.route('/')
+def root():
+    return Response(status=200)
+
 @app.route('/sid')
 def sid():
     return str(session['sid'])
