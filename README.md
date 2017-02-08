@@ -1,6 +1,6 @@
 # uestc-score-query
 
-[![Build Status](https://travis-ci.org/Soontao/uestc-score-query.svg?branch=master)](https://travis-ci.org/Soontao/uestc-score-query)
+[![Build Status](https://travis-ci.org/Soontao/uestc-score-query.svg?branch=master)](https://travis-ci.org/Soontao/uestc-score-query) [![Coverage Status](https://coveralls.io/repos/github/Soontao/uestc-score-query/badge.svg?branch=master)](https://coveralls.io/github/Soontao/uestc-score-query?branch=master)
 
 ## Usage
 
