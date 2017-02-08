@@ -1,21 +1,15 @@
 # uestc-score-query
 
-[![Build Status](https://travis-ci.org/Soontao/uestc-score-query.svg?branch=master)](https://travis-ci.org/Soontao/uestc-score-query) [![Coverage Status](https://coveralls.io/repos/github/Soontao/uestc-score-query/badge.svg?branch=master)](https://coveralls.io/github/Soontao/uestc-score-query?branch=master)
+[![Build Status](https://travis-ci.org/Soontao/uestc-score-query.svg?branch=master)](https://travis-ci.org/Soontao/uestc-score-query)
 
 ## Usage
 
 just use GET method and put username and password in the query param
 
-login first:
+like this:
 
-```curl
-curl https://uestc-score-query.cfapps.io/login?username=<yourusername>&password=<yourpassword>
 ```
-
-and grades
-
-```curl
-curl https://uestc-score-query.cfapps.io/grades
+curl https://uestc-score-query.cfapps.io?username=<yourusername>&password=<yourpassword>
 ```
 
 you can choose to deploy by cf or docker

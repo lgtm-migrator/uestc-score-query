@@ -4,19 +4,14 @@ import os
 username = os.getenv("TUSERNAME")
 password = os.getenv("TPASSWORD")
 
-def test_uestc_score_login():
-    s = uestc_query.Session()
-    assert s.login(username, password) == True
-
-def test_uestc_get_all_grades():
-    s = uestc_query.Session()
-    s.login(username,password)
-    assert len( s.get_all_grades()) > 0
-
 def test_uestc_parse_all_grades_page():
-    table = uestc_query.Session().parse_all_grades_page(all_grades_page_sample)
+    table = uestc_query.parse_all_grades_page(all_grades_page_sample) 
     assert len(table) > 0
 
+def test_uestc_score_query():
+  res = uestc_query.query(username,password);
+  assert res != None
+  assert len(res) > 0
 
 all_grades_page_sample = """
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
