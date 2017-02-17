@@ -26,7 +26,7 @@ def parse_all_grades_page(page: str):
     return table
 
 
-def query(username, password):
+def get_authorized_session(username, password):
     session = requests.session()
     r = session.get(AUTH_SERVER_URL)
     d = pq(r.text)
@@ -45,5 +45,15 @@ def query(username, password):
     }
     # login
     session.post(AUTH_SERVER_URL, data=data)
-    page = session.get(ALL_GRADES_URL).text;
+    return session
+
+
+def get_authorized_session_cookie(username, password):
+    session = get_authorized_session(username, password)
+    return session.cookies
+
+
+def query(username, password):
+    session = get_authorized_session(username, password)
+    page = session.get(ALL_GRADES_URL).text
     return parse_all_grades_page(page)

@@ -1,4 +1,5 @@
 # ignore files
 venv/
+virtualenv
 .vscode/
 __pycache__/
