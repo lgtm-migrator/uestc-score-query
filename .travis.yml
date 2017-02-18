@@ -1,6 +1,6 @@
 language: python
 python: 
-  - "3.5.2"
+  - "3.6.0"
 script: 
   - py.test tests.py --cov=uestc_query --cov-report=term-missing
 after_success:

@@ -11,9 +11,9 @@ port = int(os.getenv("PORT", 9099))
 @app.before_request
 def before_request():
     # force https
-    # param check
-    if os.getenv('ISCF') != None and request.headers.get('x_forwarded_proto') == "http":
+    if os.getenv('ISCF') != None and request.headers.get('X-Forwarded-Proto') == "http":
         return redirect(request.url.replace('http://', 'https://', 1), code=301)
+    # check param
     if request.args.get('username') == None or request.args.get('password') == None:
         return Response(response='param error', status=400)
 
@@ -22,14 +22,11 @@ def before_request():
 def home():
     username = request.args.get('username')
     password = request.args.get('password')
-    if username != None and password != None:
-        score_list = uestc_query.query(username, password)
-        resp = Response(response=json.dumps(score_list, ensure_ascii=False, indent=2),
-                        status=200,
-                        mimetype="application/json")
-        return resp
-    else:
-        return Response(response='param error', status=400)
+    score_list = uestc_query.query(username, password)
+    resp = Response(response=json.dumps(score_list, ensure_ascii=False, indent=2),
+                    status=200,
+                    mimetype="application/json")
+    return resp
 
 
 @app.route('/cookie')
@@ -37,9 +34,16 @@ def get_authorized_cookie():
     username = request.args.get('username')
     password = request.args.get('password')
     cookie_jar = uestc_query.get_authorized_session_cookie(username, password)
-    return Response(response=json.dumps(cookie_jar.get_dict(), ensure_ascii=False, indent=2),
-                    status=200,
-                    mimetype="application/json")
+    # maybe need modify cookie str
+    if request.headers.get('Content-Type') == "application/json":
+        resp = Response(response=json.dumps(cookie_jar.get_dict(), ensure_ascii=False, indent=2),
+                        status=200,
+                        mimetype="application/json")
+    else:
+        resp = ""
+        for (k, v) in cookie_jar.get_dict().items():
+            resp += "%s=%s; " % (k, v)
+    return resp
 
 if __name__ == '__main__':
     # Run the app, listening on all IPs with our chosen port number

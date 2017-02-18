@@ -28,7 +28,7 @@ def parse_all_grades_page(page: str):
 
 def get_authorized_session(username, password):
     session = requests.session()
-    r = session.get(AUTH_SERVER_URL)
+    r = session.get(ALL_GRADES_URL)
     d = pq(r.text)
     # 从网页中获取动态生成的字段
     lt = d('#casLoginForm > input[type="hidden"]:nth-child(5)').attr.value

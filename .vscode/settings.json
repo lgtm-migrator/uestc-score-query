@@ -1,6 +1,0 @@
-{
-    "python.linting.pylintEnabled": false,
-    "editor.tabSize": 4,
-    "python.pythonPath": "c:/Users/I337313/Documents/repo/uestc-score-query/venv/scripts/python.exe",
-    "python.unitTest.pyTestEnabled": true
-}
