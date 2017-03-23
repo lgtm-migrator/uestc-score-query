@@ -1,0 +1,6 @@
+version: "2"
+services: 
+  score-query:
+    build: .
+    ports: 
+    - "9099:9099"
